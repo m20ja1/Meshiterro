@@ -12,13 +12,21 @@ class UsersController < ApplicationController
       redirect_to new_session_path, notice: "ユーザー登録が完了しました！続けてログインしてください。"
     else
       render :new, status: :unprocessable_entity
-
     end
   end
+
+  def show
+     @user = User.find(params[:id])
+     @post_images = @user.post_images
+  end
+
+  def edit
+  end
+
+end
 
 private
 
   def user_params
     params.require(:user).permit(:name, :email_address, :password, :password_confirmation)
   end
-end
