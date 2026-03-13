@@ -5,6 +5,8 @@ class PostImage < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  
+
   def get_image
     if image.attached?
       image
@@ -24,5 +26,8 @@ class PostImage < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
+
+  validates :shop_name, presence: true
+  validates :image, presence: true
   
 end
